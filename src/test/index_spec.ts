@@ -1,5 +1,6 @@
 import supertest from 'supertest';
 import app from '../server';
+import Image from '../route/utilities';
 
 const request = supertest(app);
 
@@ -8,10 +9,7 @@ describe('Image Resizeing Test ', () => {
     const response = await request.get(
       '/api/resizeImage?filename=Omar&width=200&height=200'
     );
-    expect(response.body.status).toEqual('Success');
-    expect(response.body.FileName).toEqual(
-      'thumbnail/Omar-200-200_thumbnail.png'
-    );
+    expect(response.status).toEqual(200);
   });
 
   it('An Image that is not exist ', async () => {
@@ -26,5 +24,12 @@ describe('Image Resizeing Test ', () => {
       '/api/resizeImage?filename=Omar&width=-50&height=200'
     );
     expect(response.body.status).toEqual('Faild');
+  });
+  it('The Resize function should resize the image', async () => {
+    const imageName = 'Omar';
+    const width = 200;
+    const height = 200;
+    const imageFile = await Image.resizeImage(imageName, height, width);
+    expect(imageFile).toEqual('thumbnail/Omar-200-200_thumbnail.png');
   });
 });

@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import fs from 'fs';
+import path from 'path';
 import Image from './utilities';
 import checkThumbnail from '../middleware/cache';
 
@@ -24,10 +25,7 @@ const imageRequest = async (_req: Request, res: Response) => {
           FileName: 'Your Image Couldnt Process'
         });
       }
-      return res.json({
-        status: 'Success',
-        FileName: hasResized
-      });
+      return res.sendFile(path.join(__dirname, '../../', hasResized));
     }
     return res.json({
       status: 'Not Found',
