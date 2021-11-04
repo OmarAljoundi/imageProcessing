@@ -21,9 +21,9 @@ The Project uses API to resize the image as the client wish and stores the resiz
 ## Starting The Server
 
 - Run `npm start` to run the server.
-- Once the server is running, enter https://localhost:3000?filename=(yourfilename)&width(yourwidth)&height(yourheight).
+- Once the server is running, enter https://localhost:3000/api/resizeImage?filename=(yourfilename)&width=(yourwidth)&height=(yourheight).
 - Please note image should be .png and inside the original folder.
-- Example https://localhost:3000?filename=Omar&width=300&height=300 Should generate a resize version of Image "Omar" by 300 x 300.
+- Example https://localhost:3000/api/resizeImage?filename=Omar&width=300&height=300 Should generate a resize version of Image "Omar" by 300 x 300.
 - resized Images are stored in thumbnail Folder.
 
 ## Tools and Dependencies
